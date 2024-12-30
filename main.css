@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: Arial;
+}
+
+#checkmark {
+    position: absolute;
+    transform: translateX(-50%);
+    width: 67px;
+    mix-blend-mode: multiply;
+    left: 50%;
+    top: 30px;
+}
+
+#amount {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 103px;
+    font-size: 34px;
+    font-family: OpenSans;
+}
+#amount span {
+    font-family: Dewi;
+}
+#transferred {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 160px;
+    font-size: 16px;
+    font-weight: 500;
+    opacity: .5;
+}
+
+#section {
+    display: block;
+    position: relative;
+    padding: 20px;
+    margin-top: 35px;
+    height: auto;
+}
+#section a {
+    width: 50%;
+    vertical-align: middle;
+}
+#section #a {
+    display: inline-block;
+    position: absolute;
+    font-size: 16px;
+    font-weight: 500;
+    opacity: .5;
+    top: 100%;
+}
+#section #b {
+    right: 20px;
+    display: inline-block;
+    position: absolute;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: right;
+    font-weight: 300;
+    font-family: OpenSansSemiBold;
+}
+
+#bottomnav {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 118px;
+    width: 100%;
+    box-shadow: 0px 0px 20px #88888897;
+    z-index: 999;
+}
+
+#bottomnav img {
+    width: 95%;
+    padding: 10px;
+}
+
+@font-face {
+    font-family: OpenSans;
+    src: url(/assets/OpenSans-Regular.ttf);
+}
+@font-face {
+    font-family: OpenSansCondensed;
+    src: url(/assets/OpenSans_SemiCondensed-Regular.ttf);
+}
+@font-face {
+    font-family: OpenSansSemiBold;
+    src: url(/assets/OpenSans-SemiBold.ttf);
+}
+@font-face {
+    font-family: Dewi;
+    src: url(/assets/RFDewi-Bold.ttf);
+}
