@@ -69,6 +69,7 @@
 
 #section .row span.label {
     text-align: left;
+    opacity: .5;
 }
 
 #section .row span.value {
