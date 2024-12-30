@@ -9,27 +9,45 @@
     <title> </title>
 </head>
 <body>
-    <img id="checkmark" src="/assets/checkmark.png">
-    <a id="amount">RM <span>10.00</span></a>
-    <a id="transferred">Transferred</a>
+    <div class="panel" style="padding: 10px;">
+        <a>Amount: </a><br><input type="number" id="_amount"><br>
+        <a>Receiver: </a><br><input type="text" id="_receiver"><br>
+        <a>Remark: </a><br><input type="text" id="_remark"><br>
+        <a>Presets (if needed): </a><br>
+        <select id="_preset">
+            <option value="none">-</option>
+        </select>
+        <br><br>
+        <button onclick="submit()" style="background-color: aquamarine;">Submit</button>
+    </div>
 
-    <div id="section" style="margin-top: 185px;">
-        <a id="a">Receiver</a>
-        <a id="b">PULIYAMPATTAYIL<br>MUHAMMAD<br>BASHEER</a>
-    </div>
-    <div id="section">
-        <a id="a">Remark</a>
-        <a id="b">PULIYAMPATTAYIL<br>MUHAMMAD<br>BASHEER</a>
-    </div>
-    <div id="section" style="margin-top: 18px;">
-        <a id="a" style="top: 120%">Date & Time</a>
-        <a id="b" class="time"><br>nil</a>
-    </div>
-    <img src="/assets/ad.png" style="width: 100%; margin-top: 25px;">
+    <div class="receipt">
+        <img id="checkmark" src="/assets/checkmark.png">
+        <a id="amount">RM <span>10.00</span></a>
+        <a id="transferred">Transferred</a>
 
-    <div id="bottomnav">
-        <img src="/assets/share_done.png" onclick="requestAmount()">
+        <div id="section" style="margin-top: 200px">
+            <div class="row">
+                <span class="label">Receiver</span>
+                <span class="value receiver">123</span>
+            </div>
+            <div class="row">
+                <span class="label">Remark</span>
+                <span class="value remark">Fund Transfer</span>
+            </div>
+            <div class="row">
+                <span class="label">Date & Time</span>
+                <span class="value time">01/11/24 16:29:14</span>
+            </div>
+        </div>
+        
+        <img src="/assets/ad.png" style="width: 100%; margin-top: 25px;">
+
+        <div id="bottomnav">
+            <img src="/assets/share_done.png" onclick="back()">
+        </div>
     </div>
+    
     <script src="main.js"></script>
 </body>
 </html>
