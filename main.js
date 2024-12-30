@@ -15,7 +15,6 @@ SELECT.addEventListener('change', function() {
   let _receiver = document.getElementById('_receiver');
   let _remark = document.getElementById('_remark');
   let r = PRESETS.find(item => item.name === SELECT.value)
-  console.log(r)
 
   _receiver.value = r.receiver;
   _remark.value = r.remark ? _receiver.value: _receiver.value
