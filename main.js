@@ -26,8 +26,13 @@ function z(n) {
 
 // Time
 function updateTime() {
-  var d = new Date()
-  document.getElementsByClassName('time')[0].innerHTML = `${z(d.getDay())}/${z(d.getMonth())}/${z(d.getFullYear())} ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`;  
+  var d = new Date();
+  console.log(d);
+  let m = d.getMonth();
+  if (m <= 11) {
+    m++
+  }
+  document.getElementsByClassName('time')[0].innerHTML = `${z(d.getDate())}/${z(m)}/${z(d.getFullYear())} ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`;  
 }
 
 function requestAmount() {
