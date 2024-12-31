@@ -83,10 +83,11 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 12%;
+    height: 15%;
     width: 100%;
     box-shadow: 0px 0px 20px #88888897;
     z-index: 999;
+    background-color: white;
 }
 
 #bottomnav img {

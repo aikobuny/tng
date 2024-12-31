@@ -27,7 +27,6 @@ function z(n) {
 // Time
 function updateTime() {
   var d = new Date();
-  console.log(d);
   let m = d.getMonth();
   if (m <= 11) {
     m++
@@ -61,7 +60,7 @@ function submit() {
 
   document.getElementById('amount').innerHTML = `RM <span>${Number(_amount.value).toFixed(2)}</span>`;
   document.getElementsByClassName('receiver')[0].innerHTML = `${_receiver.value.replace(/ /g, "<br>")}`
-  document.getElementsByClassName('remark')[0].innerHTML = `${_remark.value ? _receiver.value: "Fund Transfer"}`
+  document.getElementsByClassName('remark')[0].innerHTML = `${_remark.value ? _remark.value: "Fund Transfer"}`
 
   document.getElementsByClassName('panel')[0].style.display = 'none';
   document.getElementsByClassName('receipt')[0].style.display = 'block';
