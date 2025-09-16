@@ -1,6 +1,6 @@
 var PRESETS;
 
-fetch('/presets.json').then(x => x.json()).then(data => {
+fetch('presets.json').then(x => x.json()).then(data => {
   let parent = document.getElementById('_preset');
   PRESETS = data
   PRESETS.forEach(e => {
