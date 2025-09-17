@@ -136,18 +136,22 @@ function submit() {
     let valueEl = row.querySelector('.value');
     if (!valueEl) return;
 
-    let lineHeight = parseFloat(window.getComputedStyle(valueEl).lineHeight);
-    let lineCount = Math.round(valueEl.offsetHeight / lineHeight);
+    requestAnimationFrame(() => {
+      let lineHeight = parseFloat(window.getComputedStyle(valueEl).lineHeight);
+      let lineCount = Math.round(valueEl.offsetHeight / lineHeight);
 
-    // base spacing for one line
-    let baseMargin = 15;
+      let baseMargin = 14;
+      row.style.marginBottom = `${lineCount * baseMargin}px`;
 
-    // only add extra if text wrapped beyond one line
-    let extraMargin = (lineCount > 1) ? (lineCount - 1) * 15 : 0;
-
-    row.style.marginBottom = `${baseMargin + extraMargin}px`;
+      console.log(
+        "lineHeight:", lineHeight,
+        "offsetHeight:", valueEl.offsetHeight,
+        "lineCount:", lineCount,
+        "text:", valueEl.textContent,
+        "marginBottom:", lineCount * baseMargin
+      );
+    });
   });
-
 
 
   document.getElementsByClassName('panel')[0].style.display = 'none';
