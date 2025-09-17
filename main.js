@@ -31,7 +31,7 @@ function generateEwalletRef() {
     return result;
   }
   const secondaryRef = getRandomString(18);
-  return `${dateStr}${transactionId}${serviceIdentifier}<br>${secondaryRef}`;
+  return `${dateStr}${transactionId}${serviceIdentifier}${secondaryRef}`;
 }
 
 fetch('presets.json').then(x => x.json()).then(data => {
@@ -135,10 +135,19 @@ function submit() {
   document.querySelectorAll('#section .row').forEach(row => {
     let valueEl = row.querySelector('.value');
     if (!valueEl) return;
-    let html = valueEl.innerHTML;
-    let brCount = (html.match(/<br>/g) || []).length;
-    row.style.marginBottom = `${15 * (brCount + 1)}px`;
+
+    let lineHeight = parseFloat(window.getComputedStyle(valueEl).lineHeight);
+    let lineCount = Math.round(valueEl.offsetHeight / lineHeight);
+
+    // base spacing for one line
+    let baseMargin = 15;
+
+    // only add extra if text wrapped beyond one line
+    let extraMargin = (lineCount > 1) ? (lineCount - 1) * 15 : 0;
+
+    row.style.marginBottom = `${baseMargin + extraMargin}px`;
   });
+
 
 
   document.getElementsByClassName('panel')[0].style.display = 'none';
