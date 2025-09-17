@@ -1,5 +1,39 @@
 var PRESETS;
 
+function generateTransactionRef() {
+  const now = new Date();
+  const dateStr = now.toISOString().slice(0, 10).replace(/-/g, ''); // Format YYYYMMDD
+  const serviceIdentifier = "TNGD";
+  function getRandomString(length) {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  }
+  const uniquePart1 = getRandomString(8);
+  const uniquePart2 = getRandomString(8);
+  return `${dateStr}${serviceIdentifier}${uniquePart1}<br>${uniquePart2}`;
+}
+
+function generateEwalletRef() {
+  const now = new Date();
+  const dateStr = now.toISOString().slice(0, 10).replace(/-/g, '');
+  const transactionId = Array.from({ length: 14 }, () => Math.floor(Math.random() * 2)).join('');
+  const serviceIdentifier = "TNG";
+  function getRandomString(length) {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  }
+  const secondaryRef = getRandomString(18);
+  return `${dateStr}${transactionId}${serviceIdentifier}<br>${secondaryRef}`;
+}
+
 fetch('presets.json').then(x => x.json()).then(data => {
   let parent = document.getElementById('_preset');
   PRESETS = data
@@ -14,10 +48,18 @@ var SELECT = document.getElementById('_preset')
 SELECT.addEventListener('change', function() {
   let _receiver = document.getElementById('_receiver');
   let _remark = document.getElementById('_remark');
+  let _points = document.getElementById('_points');
+  let _ern = document.getElementById('_ern');
+  let _pm = document.getElementById('_pm');
+  let _share = document.getElementById('_share');
   let r = PRESETS.find(item => item.name === SELECT.value)
 
   _receiver.value = r.receiver;
-  _remark.value = r.remark ? _receiver.value: _receiver.value
+  _remark.value = r.remark ? "" : "";
+  _points.checked = r.points ? true : false;
+  _ern.value = r.ern ? "yes" : "";
+  _pm.value = r.pm ? r.pm : "";
+  _share.checked = r.share ? true : false;
 })
 
 function z(n) {
@@ -50,17 +92,54 @@ function back() {
 
 function submit() {
   let _amount = document.getElementById('_amount');
+  document.getElementById('amount').innerHTML = `RM <span style="letter-spacing: 1px;">${Number(_amount.value).toFixed(2)}</span>`;
+
+  let selectedMethod = document.querySelector('input[name="payment_method"]:checked')?.value;
+  document.getElementById('transferred').innerHTML = selectedMethod;
+
   let _receiver = document.getElementById('_receiver');
+  document.getElementsByClassName('receiver')[0].innerHTML = `${_receiver.value}` // .replace(/ /g, "<br>")
+
   let _remark = document.getElementById('_remark');
+  document.getElementsByClassName('remark')[0].innerHTML = `${_remark.value ? _remark.value: "Fund Transfer"}`;
+  document.getElementById('remark').style.display = _remark.value.length > 0 ? "block" : "none";
+  // document.getElementById('remark').style.display 
+
+  let _ern = document.getElementById('_ern');
+  document.getElementsByClassName('ern')[0].innerHTML = _ern.value === 'yes' ? generateEwalletRef() : _ern.value;
+  document.getElementById('ern').style.display = _ern.value.length > 0 ? "block" : "none";
+
+  let _pm = document.getElementById('_pm');
+  document.getElementsByClassName('pm')[0].innerHTML = (_pm.value && _pm.value !== 'yes') ? _pm.value : (_pm.value === 'yes' ? 'eWallet Balance' : '');
+  document.getElementById('pm').style.display = _pm.value.length > 0 ? "block" : "none";
+
   let _preset = document.getElementById('_preset');
+
+  let _points = document.getElementById('_points');
+  document.getElementById('points').style.display = _points.checked ? "block" : "none";
+  document.getElementById('points').style.color = Number(_amount.value).toFixed(2) >= 0 ? "#3170d2" : "#f50c00";
+  document.getElementById('points').style.backgroundColor = Number(_amount.value).toFixed(2) >= 0 ? "#eef2fe" : "#FEE0DF";
+  document.getElementById('points').innerText = `+ ${_amount.value} points`
+  document.getElementById('section').style.marginTop = _points.checked ? "250px" : "200px";
+
+  let _ad = document.getElementById('_ad');
+  document.getElementById('ad').style.display = _ad.checked ? "block" : "none";
+
+  let _share = document.getElementById('_share');
+  document.getElementById('share').setAttribute('src', _share.checked ? "assets/share_done.png" : "assets/done.png");
 
   if (_preset.value != "none") {
 
   }
 
-  document.getElementById('amount').innerHTML = `RM <span>${Number(_amount.value).toFixed(2)}</span>`;
-  document.getElementsByClassName('receiver')[0].innerHTML = `${_receiver.value.replace(/ /g, "<br>")}`
-  document.getElementsByClassName('remark')[0].innerHTML = `${_remark.value ? _remark.value: "Fund Transfer"}`
+  document.querySelectorAll('#section .row').forEach(row => {
+    let valueEl = row.querySelector('.value');
+    if (!valueEl) return;
+    let html = valueEl.innerHTML;
+    let brCount = (html.match(/<br>/g) || []).length;
+    row.style.marginBottom = `${15 * (brCount + 1)}px`;
+  });
+
 
   document.getElementsByClassName('panel')[0].style.display = 'none';
   document.getElementsByClassName('receipt')[0].style.display = 'block';

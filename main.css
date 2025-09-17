@@ -2,9 +2,10 @@
     margin: 0;
     border: 0;
     padding: 0;
-    font-family: Arial;
+    font-family: OpenSans;
     user-select: none;
     -webkit-user-select: none;
+    white-space: nowrap;
 }
 
 .receipt {
@@ -13,13 +14,16 @@
 .receipt input {
     background-color: gray;
 }
+.panel {
+    display: block;
+}
 #checkmark {
     position: absolute;
     transform: translateX(-50%);
     width: 67px;
     mix-blend-mode: multiply;
     left: 50%;
-    top: 30px;
+    top: 50px;
 }
 
 #amount {
@@ -27,28 +31,46 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 103px;
+    top: 120px;
     font-size: 34px;
     font-family: OpenSans;
 }
 #amount span {
-    font-family: Dewi;
+    font-family: PretendardSemiBold;
 }
 #transferred {
     display: block;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 160px;
-    font-size: 16px;
-    font-weight: 500;
+    top: 170px;
+    font-size: 14px;
+    font-weight: 0;
     opacity: .5;
+}
+
+#points {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    transform: translateX(-50%);
+    width: auto;
+    font-size: 14px;
+    text-align: center;
+    background-color: #FEE0DF;
+    color: #f50c00;
+    font-weight: 500;
+    padding: 8px;
+    border-radius: 10px;
+    font-family: OpenSansSemiBold;
 }
 
 #section {
     display: block;
     position: relative;
-    padding: 20px;
+    padding: 25px;
+    padding-bottom: 5px;
     margin-top: 35px;
     height: auto;
 }
@@ -56,27 +78,79 @@
 #section .row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px; /* Adds space between lines */
+    align-items: flex-start;
+    margin-bottom: 15px;
+    position: relative;
 }
 
 #section .row span {
-    font-size: 16px;
-    font-weight: 500;
-    font-family: OpenSansSemiBold;
+    font-size: 14.5px;
     opacity: 0.8;
 }
 
 #section .row span.label {
-    text-align: left;
     color: #787878;
-    font-weight: normal;
+    width: 40%;
+    flex-shrink: 0;
 }
 
 #section .row span.value {
+    font-family: OpenSansSemiBold;
     text-align: right;
+    max-width: 60%;
+    word-break: break-word;
+    white-space: normal;
+    line-height: 1.4;
+    margin-left: auto;
+    display: inline-block;
+    right: 0;
+    position: absolute;
 }
 
+.card {
+    width: calc(100% - 70px);
+    height: 80px;
+    margin: 0 20px;
+    background-color: #e9e9e9;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.card img {
+    width: 75px;
+    position: absolute;
+}
+
+.card div {
+    position: relative;
+    width: 0;
+    left: 90px;
+    font-family: OpenSans;
+}
+.card .header {
+    font-family: OpenSansSemiBold;
+    font-size: 15px;
+}
+.card .subtext {
+    font-size: 12px;
+}
+.card button {
+    position: relative;
+    width: 80px;
+    border-radius: 9999px;
+    background-color: white;
+    border: solid 1px blue;
+    color: blue;
+    height: 25px;
+    left: 90px;
+    margin-top: 5px;
+}
+
+.sl {
+    width: 25px;
+    left: 25px;
+    position: relative;
+}
 
 #bottomnav {
     display: block;
@@ -85,7 +159,7 @@
     left: 0;
     height: 15%;
     width: 100%;
-    box-shadow: 0px 0px 20px #88888897;
+    /* box-shadow: 0px 0px 20px #88888897; */
     z-index: 999;
     background-color: white;
 }
@@ -114,13 +188,31 @@
     src: url(assets/OpenSans-SemiBold.ttf);
 }
 @font-face {
+    font-family: OpenSansBold;
+    src: url(assets/OpenSans-Bold.ttf);
+}
+@font-face {
     font-family: Dewi;
     src: url(assets/RFDewi-Bold.ttf);
+}
+@font-face {
+    font-family: PretendardSemiBold;
+    src: url(assets/Pretendard-SemiBold.otf);
 }
 
 input, select, button {
     width: 250px;
-    height: 50px;
+    height: 35px;
     background-color: rgb(240, 240, 240);
     border-radius: 5px;
+    padding-left: 10px;
+}
+
+input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+}
+input[type=radio] {
+    width: 15px;
+    height: 15px;
 }

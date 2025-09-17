@@ -12,11 +12,33 @@
     <div class="panel" style="padding: 10px;">
         <a>Amount: </a><br><input type="number" id="_amount" value="1"><br>
         <a>Receiver: </a><br><input type="text" id="_receiver"><br>
-        <a>Remark: </a><br><input type="text" id="_remark"><br>
         <a>Presets (if needed): </a><br>
         <select id="_preset"></select>
+        <br>
+        <br>
+        <a>Remark (Optional): </a><br><input type="text" id="_remark"><br>
+        <a>eWallet Ref No. (Optional): </a><br><input type="text" id="_ern" placeholder="type 'yes' for randomized"><br>
+        <a>Payment Method (Optional)</a><br><input type="text" id="_pm" placeholder="type 'yes' for eWallet Balance"><br>
         <br><br>
-        <button onclick="submit()" style="background-color: aquamarine;">Submit</button>
+        <a><input type="checkbox" id="_points">&nbsp;Points?</a>
+        <a><input type="checkbox" id="_ad">&nbsp;Ad?</a>
+        <a><input type="checkbox" id="_share">&nbsp;Share Button?</a>
+        <br><br>
+        <div>
+            <label>
+                <input type="radio" name="payment_method" value="Transferred" id="_transferred">
+                Transferred
+            </label>
+            
+            <label>
+                <input type="radio" name="payment_method" value="Paid" id="_paid" checked>
+                Paid
+            </label>
+        </div>
+        
+        <br><br>
+        <button onclick="submit()" style="background-color: aquamarine;">Submit</button><br><br>
+        <a style="font-size: 12px;">Note: You can enter full screen mode by adding this page<br>on your home screen. Works on both iOS and Android</a>
     </div>
 
     <div class="receipt">
@@ -24,25 +46,36 @@
         <a id="amount">RM <span></span></a>
         <a id="transferred">Transferred</a>
 
+        <a id="points">0 points</a>
+
         <div id="section" style="margin-top: 200px">
             <div class="row">
                 <span class="label">Receiver</span>
                 <span class="value receiver"></span>
             </div>
             <div class="row">
+                <span class="label">Date/Time</span>
+                <span class="value time"></span>
+            </div>
+            <div class="row" id="remark">
                 <span class="label">Remark</span>
                 <span class="value remark"></span>
             </div>
-            <div class="row">
-                <span class="label">Date & Time</span>
-                <span class="value time"></span>
+            <div class="row" style="margin-bottom: 30px;" id="ern">
+                <span class="label">eWallet Ref No.</span>
+                <span class="value ern"></span>
             </div>
+            <div class="row" id="pm">
+                <span class="label">Payment Method</span>
+                <span class="value pm"></span>
+            </div>
+            
         </div>
 
-        <img src="assets/ad.png" class="ad"/>
+        <img src="assets/ad.png" class="ad" id="ad">
 
         <div id="bottomnav">
-            <img src="assets/share_done.png" onclick="back()">
+            <img src="assets/done.png" onclick="back()" id="share">
         </div>
     </div>
     
