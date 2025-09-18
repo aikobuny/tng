@@ -61,7 +61,7 @@ SELECT.addEventListener('change', function() {
   _ern.value = r.ern ? "yes" : "";
   _pm.value = r.pm ? r.pm : "";
   _share.checked = r.share ? true : false;
-  _notification.checked = r.notification ? true : false;
+  _notification.checked = r.notification ? true : true;
 })
 
 function z(n) {
@@ -145,6 +145,7 @@ function submit() {
       let baseMargin = 14;
       row.style.marginBottom = `${lineCount * baseMargin}px`;
 
+      /*
       console.log(
         "lineHeight:", lineHeight,
         "offsetHeight:", valueEl.offsetHeight,
@@ -152,6 +153,7 @@ function submit() {
         "text:", valueEl.textContent,
         "marginBottom:", lineCount * baseMargin
       );
+      */
     });
   });
 
@@ -162,20 +164,18 @@ function submit() {
 
   if (_notification.checked && Notification.permission === 'granted') {
     console.log('Showing notification');
-    new Notification('Transfer Successful.', {
+    console.log('Notification permission:', Notification.permission);
+    console.log('Document visibility:', document.visibilityState);
+    console.log('Window focus:', document.hasFocus());
+    
+    const notification = new Notification('Transfer Successful.', {
       body: `RM ${Number(_amount.value).toFixed(2)} has been successfully transferred to ${_receiver.value}`,
-      // icon: 'assets/tng.png'
     });
+    
+    notification.onshow = () => console.log('✅ Notification displayed');
+    notification.onerror = (e) => console.log('❌ Notification error:', e);
+    notification.onclick = () => console.log('Notification clicked');
   }
-
 }
-
-Notification.requestPermission().then(permission => {
-    if (permission === 'granted') {
-        console.log('Notification permission granted');
-    } else {
-        console.log('Notification permission denied');
-    }
-});
 
 window.navigator.standalone = true
