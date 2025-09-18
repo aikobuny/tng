@@ -121,7 +121,7 @@ function submit() {
   document.getElementById('points').style.display = _points.checked ? "block" : "none";
   document.getElementById('points').style.color = Number(_amount.value).toFixed(2) >= 0 ? "#3170d2" : "#f50c00";
   document.getElementById('points').style.backgroundColor = Number(_amount.value).toFixed(2) >= 0 ? "#eef2fe" : "#FEE0DF";
-  document.getElementById('points').innerText = `+ ${_amount.value} points`
+  document.getElementById('points').innerText = `+ ${Math.floor(_amount.value)} points`
   document.getElementById('section').style.marginTop = _points.checked ? "250px" : "200px";
 
   let _ad = document.getElementById('_ad');
