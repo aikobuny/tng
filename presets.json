@@ -13,6 +13,7 @@
         "points": true,
         "ern": "yes",
         "pm": "eWallet Balance",
-        "share": false
+        "share": false,
+        "notification": true
     }
 ]

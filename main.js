@@ -52,14 +52,16 @@ SELECT.addEventListener('change', function() {
   let _ern = document.getElementById('_ern');
   let _pm = document.getElementById('_pm');
   let _share = document.getElementById('_share');
+  let _notification = document.getElementById('_notification');
   let r = PRESETS.find(item => item.name === SELECT.value)
 
   _receiver.value = r.receiver;
-  _remark.value = r.remark ? "" : "";
+  _remark.value = r.remark ? r.remark : "";
   _points.checked = r.points ? true : false;
   _ern.value = r.ern ? "yes" : "";
   _pm.value = r.pm ? r.pm : "";
   _share.checked = r.share ? true : false;
+  _notification.checked = r.notification ? true : false;
 })
 
 function z(n) {
@@ -157,6 +159,23 @@ function submit() {
   document.getElementsByClassName('panel')[0].style.display = 'none';
   document.getElementsByClassName('receipt')[0].style.display = 'block';
   updateTime();
+
+  if (_notification.checked && Notification.permission === 'granted') {
+    console.log('Showing notification');
+    new Notification('Transfer Successful.', {
+      body: `RM ${Number(_amount.value).toFixed(2)} has been successfully transferred to ${_receiver.value}`,
+      // icon: 'assets/tng.png'
+    });
+  }
+
 }
+
+Notification.requestPermission().then(permission => {
+    if (permission === 'granted') {
+        console.log('Notification permission granted');
+    } else {
+        console.log('Notification permission denied');
+    }
+});
 
 window.navigator.standalone = true
