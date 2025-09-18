@@ -15,5 +15,14 @@
         "pm": "eWallet Balance",
         "share": false,
         "notification": true
+    },
+    {
+        "name": "KEN ONLINE STORE",
+        "receiver": "KEN ONLINE STORE",
+        "points": true,
+        "ern": "yes",
+        "pm": "eWallet Balance",
+        "share": false,
+        "notification": true
     }
 ]
