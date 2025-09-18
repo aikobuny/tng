@@ -170,6 +170,7 @@ function submit() {
     
     const notification = new Notification('Transfer Successful.', {
       body: `RM ${Number(_amount.value).toFixed(2)} has been successfully transferred to ${_receiver.value}`,
+      icon: "assets/tng.png"
     });
     
     notification.onshow = () => console.log('✅ Notification displayed');
