@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="msapplication-navbutton-color" content="#ffffff">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="stylesheet" href="main.css">
-    <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="assets/tng.png">
     <!-- iOS home screen icons -->
     <link rel="apple-touch-icon" href="assets/tng.png">
@@ -35,10 +31,12 @@
         <a><input type="checkbox" id="_points">&nbsp;Points?</a>
         <a><input type="checkbox" id="_ad">&nbsp;Ad?</a>
         <a><input type="checkbox" id="_share">&nbsp;Share Button?</a>
-        <br>
+        <br><br>
         <a><input type="checkbox" id="_notification">&nbsp;Notification?</a>
         <br>
         <button onclick="Notification.requestPermission()">Request Notification Permission</button>
+        <br><br>
+        <button onclick="requestPageFullscreen()">Request Fullscreen</button>
         <br><br>
         <div>
             <label>
